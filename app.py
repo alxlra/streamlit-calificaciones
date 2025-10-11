@@ -61,11 +61,19 @@ with tab3:
     if st.button("💻 Calcular calificación", key="3_button"):
         calificacion_final = (examen3_1 * 0.15) + (examen3_2 * 0.20) + (examen3_3 * 0.20) + (practicas3 * 0.20) + (proyecto_avances3 * 0.10) + (proyecto3 * 0.15)
         if calificacion_final >= 60:
-            st.success(f"✔ Aprobará con una calificación final de {calificacion_final:.2f}")
+            st.success(f"✔ Aprobará con una calificación final de **{calificacion_final:.2f}**")
         elif calificacion_final >= 55:
-            st.warning(f"⚠ Puede recuperar repechaje, actualmente {calificacion_final:.2f}")
+            st.info(f"⚠ Puede recuperar repechaje, actualmente **{calificacion_final:.2f}**")
         else:
-            st.error(f"✘ No aprobará con una calificación final de {calificacion_final:.2f}")
+            st.error(f"✘ No aprobará con una calificación final de **{calificacion_final:.2f}**")
+    
+        min_examen3 = (60 - (examen3_1 * 0.15) - (examen3_2 * 0.20) - (practicas3 * 0.20) - (proyecto_avances3 * 0.10) - (proyecto3 * 0.15)) / 0.20
+        min_examen3_rep = (55 - (examen3_1 * 0.15) - (examen3_2 * 0.20) - (practicas3 * 0.20) - (proyecto_avances3 * 0.10) - (proyecto3 * 0.15)) / 0.20
+        mincol1, mincol2 = st.columns(2)
+        with mincol1:
+            st.success(f"Calificación **mínima** necesaria en **Examen** 3 para aprobar: **{min_examen3:.2f}**")
+        with mincol2:
+            st.warning(f"Calificación **mínima** necesaria en **Examen** 3 para repechaje: **{min_examen3_rep:.2f}**")
 with tab4:
     st.subheader("❓ Información")
     st.write("""
