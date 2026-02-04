@@ -39,7 +39,7 @@ with tab1:
         umbral = 0.35
         aprueba = p_si >= umbral
 
-        res1_1, res1_2 = st.columns(2)
+        res1_1, res1_2 = st.columns([1,2])
         with res1_1:
             st.metric("Score de aprobación", f"{p_si*100:.1f}%", help=f"Regla de decisión: aprueba si el score ≥ {umbral:.2f}") # prioriza detectar aprobados
         with res1_2:
@@ -55,7 +55,7 @@ with tab2:
     examen2_1 = st.number_input("Examen 1 (0-100):", min_value=0, max_value=100, value=30, key="2_examen1")
     examen2_2 = st.number_input("Examen 2 (0-100):", min_value=0, max_value=100, value=30, key="2_examen2")
     practicas1 = st.number_input("Práctica 1 (0-100):", min_value=0, max_value=100, value=95, key='2_practica1', help="Calificación de la primer práctica")
-    practicas2 = st.number_input("Prácticas (0-100):", min_value=0, max_value=100, value=95, key="2_practica2", help="Calificación de la segunda práctica")
+    practicas2 = st.number_input("Práctica 2 (0-100):", min_value=0, max_value=100, value=95, key="2_practica2", help="Calificación de la segunda práctica")
     proyecto2 = 84 #promedio de proyectos entregados
 
     if st.button("🧙‍♂️ Predecir", key="2_button"):
@@ -75,7 +75,7 @@ with tab2:
         umbral = 0.4
         aprueba = p_si >= umbral
 
-        res1_1, res1_2 = st.columns(2)
+        res1_1, res1_2 = st.columns([1,2])
         with res1_1:
             st.metric("Score de aprobación", f"{p_si*100:.1f}%", help=f"Regla de decisión: aprueba si el score ≥ {umbral:.2f}") # prioriza detectar aprobados
         with res1_2:
@@ -105,9 +105,11 @@ with tab3:
         min_examen3_rep = (55 - (examen3_1 * 0.15) - (examen3_2 * 0.20) - (practicas3/4 * 0.20) - (proyecto_avances3 * 0.10) - (proyecto3 * 0.15)) / 0.20
         mincol1, mincol2 = st.columns(2)
         with mincol1:
-            st.success(f"⚠ Calificación **mínima** necesaria en **Examen 3** para aprobar: **{min_examen3:.2f}**")
+            if min_examen3 > 0:
+                st.success(f"Calificación **mínima** necesaria en **Examen 3** para aprobar: **{min_examen3:.2f}**")
         with mincol2:
-            st.warning(f"⚠ Calificación **mínima** necesaria en **Examen 3** para repechaje: **{min_examen3_rep:.2f}**")
+            if min_examen3_rep > 0:
+                st.warning(f"Calificación **mínima** necesaria en **Examen 3** para repechaje: **{min_examen3_rep:.2f}**")
 with tab4:
     st.subheader("❓ Información")
     st.write("""
