@@ -9,3 +9,12 @@ Esta aplicación utiliza modelos de aprendizaje automático para predecir si un 
 Los modelos fueron entrenados utilizando el algoritmo de Bosques Aleatorios (Random Forest) utilizando la información de alumnos de semestres pasados.
     
     Nota: Estas predicciones son aproximaciones y no garantizan resultados definitivos en evaluaciones académicas reales.
+
+---
+### Crear entorno:
+`call .venv\Scripts\activate.bat`
+
+### Ejecutar Streamlit
+`".venv\Scripts\python.exe" -m streamlit run app.py --server.headless=false --server.port=8502`
+
+_headless=false_ para que abra el navegador automáticamente
