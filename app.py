@@ -2,6 +2,9 @@ import streamlit as st
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 
+UMBRAL_1CAL = 0.35
+UMBRAL_2CAL = 0.4
+
 @st.cache_data
 def load_model_1cal():
     from joblib import load
@@ -36,7 +39,7 @@ with tab1:
         # with res1_2:
         #     st.success(f"### {probs[0][1]*100:.2f}% Aprobará")
         p_si = float(rfclas1.predict_proba(prediccion)[0][1])
-        umbral = 0.35
+        umbral = UMBRAL_1CAL
         aprueba = p_si >= umbral
 
         res1_1, res1_2 = st.columns([1,2])
@@ -72,7 +75,7 @@ with tab2:
         #     st.success(f"### {probs[0][1]*100:.2f}% Aprobará")
 
         p_si = float(rfclas2.predict_proba(prediccion)[0][1])
-        umbral = 0.4
+        umbral = UMBRAL_2CAL
         aprueba = p_si >= umbral
 
         res1_1, res1_2 = st.columns([1,2])
